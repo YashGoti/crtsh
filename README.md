@@ -8,19 +8,19 @@ requests
 json
 ```
 
-### Installation
+#### Installation
 ```
 git clone https://github.com/YashGoti/crtsh.py.git
 cd crtsh.py
 python3 crtsh.py -h
 ```
 
-### Usage
+#### Usage
 ```
 python3 crtsh.py -d DOMAIN
 ```
 
-### Options
+#### Options
 |Options|Description|
 |-|-|
 |-d|Specify target domain|
