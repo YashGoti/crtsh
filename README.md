@@ -1,26 +1,28 @@
 # crtsh.py
 A Python Script to Get Subdomain using https://crt.sh
 
-# Requirements
+#### Requirements
 ```
 argparse
 requests
 json
 ```
 
-# Installation
+### Installation
 ```
 git clone https://github.com/YashGoti/crtsh.py.git
 cd crtsh.py
 python3 crtsh.py -h
 ```
 
-# Usage
+### Usage
 ```
-1. Normal
-    python3 crtsh.py -d DOMAIN
-2. Wildcard
-    python3 crtsh.py -d DOMAIN -w
-3. Recursive
-    python3 crtsh.py -d DOMAIN -r
+python3 crtsh.py -d DOMAIN
 ```
+
+### Options
+|Options|Description|
+|-|-|
+|-d|Specify target domain|
+|-r|Use recursive search for target domain|
+|-w|show wildcard subdomain|
