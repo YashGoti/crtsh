@@ -1,5 +1,5 @@
 # crtsh.py
-A Python Script to Get Subdomain using https://crt.sh
+A Python Utility / Script to Get Subdomain using https://crt.sh
 
 #### Requirements
 ```
