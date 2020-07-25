@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import sys, argparse, requests, json
 
 def parser_error(errmsg):
