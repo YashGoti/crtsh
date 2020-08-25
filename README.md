@@ -15,14 +15,6 @@ cd crtsh.py
 python3 crtsh.py -h
 ```
 
-### Usage
-```
-python3 crtsh.py -d example.com
-python3 crtsh.py -d example.com -w
-python3 crtsh.py -d example.com -r
-python3 crtsh.py -d example.com -r -w
-```
-
 ### Options
 |Flags||Description|
 |-|-|-|
@@ -30,3 +22,11 @@ python3 crtsh.py -d example.com -r -w
 |-d DOMAIN|--domain DOMAIN|Specify Target Domain to get subdomains from crt.sh|
 |-r|--recursive|Do recursive search for subdomains|
 |-w|--wildcard|Include wildcard in output|
+
+### Usage
+```
+python3 crtsh.py -d example.com
+python3 crtsh.py -d example.com -w
+python3 crtsh.py -d example.com -r
+python3 crtsh.py -d example.com -r -w
+```
