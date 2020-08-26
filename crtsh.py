@@ -2,9 +2,7 @@
 import sys, argparse, requests, json
 
 BASE_URL = "https://crt.sh/?q={}&output=json"
-SUBDOMAINS = set()
 subdomains = set()
-WILDCARDSUBDOMAINS = set()
 wildcardsubdomains = set()
 
 def parser_error(errmsg):
@@ -23,44 +21,36 @@ def parse_args():
 
 def crtsh(domain):
     try:
-    	response = requests.get(BASE_URL.format(domain), timeout=25)
-    	if response.ok:
-    		content = response.content.decode('UTF-8')
-    		jsondata = json.loads(content)
-    		for i in range(len(jsondata)):
-    			name_value = jsondata[i]['name_value']
-    			if name_value.find('\n'):
-    				subname_value = name_value.split('\n')
-    				for subname_value in subname_value:
-    					if subname_value.find('*'):
-    						if subname_value not in SUBDOMAINS.copy():
-    							SUBDOMAINS.add(subname_value)
-    						else:
-    							if subname_value not in WILDCARDSUBDOMAINS.copy():
-    								WILDCARDSUBDOMAINS.add(subname_value)
+        response = requests.get(BASE_URL.format(domain), timeout=25)
+        if response.ok:
+            content = response.content.decode('UTF-8')
+            jsondata = json.loads(content)
+            for i in range(len(jsondata)):
+                name_value = jsondata[i]['name_value']
+                if name_value.find('\n'):
+                    subname_value = name_value.split('\n')
+                    for subname_value in subname_value:
+                        if subname_value.find('*'):
+                            if subname_value not in subdomains:
+                                subdomains.add(subname_value)
+                        else:
+                            if subname_value not in wildcardsubdomains:
+                                wildcardsubdomains.add(subname_value)
     except:
-    	pass
+        pass
 
-if __name__ == "__main__":    
+if __name__ == "__main__":
     args = parse_args()
     crtsh(args.domain)
-
-    if args.domain:    
-        for subdomain in SUBDOMAINS:
-            if subdomain not in subdomains.copy():
-                subdomains.add(subdomain)
+    if args.domain:
+        for subdomain in subdomains:
+            print(subdomain)
 
     if args.recursive:
-        for wildcardsubdomain in WILDCARDSUBDOMAINS.copy():
+        for wildcardsubdomain in wildcardsubdomains.copy():
             wildcardsubdomain = wildcardsubdomain.replace('*.', '%25.')
             crtsh(wildcardsubdomain)
 
     if args.wildcard:
-        for wildcardsubdomain in WILDCARDSUBDOMAINS:
-            if wildcardsubdomain not in wildcardsubdomains.copy():
-                wildcardsubdomains.add(wildcardsubdomain)
-        for wildcardsubdomain in wildcardsubdomains.copy():
+        for wildcardsubdomain in wildcardsubdomains:
             print(wildcardsubdomain)
-
-    for subdomain in subdomains:
-        print(subdomain)
