@@ -45,8 +45,8 @@ if __name__ == "__main__":
     crtsh(args.domain)
 
     # Create the output file if specified
-    with open(args.output, "w") as f:
-        f.write("")
+    file = open(args.output, "w")
+    file.close()
 
     # Direct the output to a file or stdout
     def output(subdomain):
